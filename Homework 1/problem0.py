@@ -1,3 +1,4 @@
+
 import numpy as np      # This is just NumPy. It will making writing this type of code much easier.
 from tensorflow.keras.datasets import mnist
 
@@ -8,8 +9,10 @@ from tensorflow.keras.datasets import mnist
 mask = np.isin(y_train, [0, 1, 9])
 x = x_train[mask]   # Images
 
-# Vectorize each image into a column vector of length 784 and stack all vectors as columns of the data matrix 
-# where N is the total number of selected images. Set the data type of X to float32.
+"""
+Vectorize each image into a column vector of length 784 and stack all vectors as columns of the data matrix 
+ where N is the total number of selected images. Set the data type of X to float32. 
+"""
 
 num_images_N = x.shape[0]       # Number of selected images, N.
 X = x.reshape(num_images_N, 784).T    # <--- Initial image with transpose. The ".T" means we transposed.
