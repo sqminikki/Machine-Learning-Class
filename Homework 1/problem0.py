@@ -31,3 +31,5 @@ X_tilde = X - myu
 print("X shape:", X.shape)            
 print("myu shape:", myu.shape)            
 print("Centered mean (≈0):", X_tilde.mean())
+
+# ja;klsdfj;kasjdf;laksjf
