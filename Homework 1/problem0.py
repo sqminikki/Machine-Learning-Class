@@ -8,6 +8,7 @@ from tensorflow.keras.datasets import mnist
 # Extract digits 0, 1, and 9 ONLY.
 mask = np.isin(y_train, [0, 1, 9])
 x = x_train[mask]   # Images
+y = y_train[mask]   # Labels
 
 """
 Vectorize each image into a column vector of length 784 and stack all vectors as columns of the data matrix 
