@@ -22,7 +22,7 @@ for K in K_set:
     print(f"K = {K:3d}   error = {e:.6f}")
 
 # ~~~~ Plotting Figure 3: e(X_tilde, Y_K) vs. K ~~~~
-plt.figure()
+plt.figure(figsize=(8,6), constrained_layout=True)
 plt.plot(list(errors.keys()), list(errors.values()), marker='o')
 plt.xlabel("K")
 plt.ylabel(r"$e(\tilde{X}, Y_K) = \|\tilde{X} - Y_K\|_F$")
