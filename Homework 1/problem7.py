@@ -111,7 +111,7 @@ def analyze_case(case_num, G_name, G, f, f_name, tolerance=1e-8):
     print(f"Solution status: {solution_type}")
 
     if w is not None:
-        print("\nOne solution w (using first square):")
+        print("\nOne solution w (using least square):")
         print(w)
 
 # --- Run Cases ---
