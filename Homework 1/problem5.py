@@ -2,10 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from problem0 import X, X_tilde, y, myu   # uses your Problem 0 outputs
 
-# ----------------------------
-# Problem 5: Low-Dimensional Geometry and Visualization
-# ----------------------------
-
 # 1) SVD of centered data
 U, S, Vt = np.linalg.svd(X_tilde, full_matrices=False)
 
