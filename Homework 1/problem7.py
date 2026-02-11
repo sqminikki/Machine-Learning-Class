@@ -2,7 +2,7 @@ import numpy as np
 
 np.set_printoptions(precision=8, suppress=True)
 
-# Matrices and Vectors
+# --- Matrices and Vectors ---
 
 A = np.array([
     [-2.74125009,  2.24215689, -0.60553211, -0.16755625],
@@ -41,7 +41,7 @@ D = np.array([
 yD  = np.array([0.41615372, 0.56336601, -0.43513813, -0.44243299], dtype=float)
 yD2 = np.array([0.47277025, -0.64357627, 1.30059591, 1.42694800], dtype=float)
 
-# Cases
+# --- Cases ---
 
 cases = [
     ("Case 1", "A", A, yA, "yA"),
@@ -53,7 +53,7 @@ cases = [
     ("Case 7", "D", D, yD2, "yD2"),
 ]
 
-# Orthogonal Projection Matrix onto Range(G)
+#--- Orthogonal Projection Matrix onto Range(G) ---
 def projection_range(G, tol=1e-12):
     U, s, Vt = np.linalg.svd(G, full_matrices=False)
     r = np.sum(s > tol)
@@ -61,19 +61,20 @@ def projection_range(G, tol=1e-12):
     P = U_r @ U_r.T # m x m
     return P, r, s
 
+# --- Single Case G, f ---
 def analyze_case(case_num, G_name, G, f, f_name, tolerance=1e-8):
     m, n = G.shape
 
-    # Projection onto Range(G)
+    # --- Projection onto Range(G) ---
     projection_matrix, rankG, svals = projection_range(G)
 
-    # Test f in Range(G) -- Pf = f
+    # --- Test f in Range(G) ; Pf = f ---
     projected_f = projection_matrix @ f
     projection_error = f - projected_f
     distance = np.linalg.norm(projection_error, ord=2)
     in_range = distance < tolerance
 
-    # Over/Underdetermined  
+    # --- Over/Underdetermined ---
     if m > n:
         determined_type = "Overdetermined (m > n)"
     elif m < n:
@@ -81,7 +82,7 @@ def analyze_case(case_num, G_name, G, f, f_name, tolerance=1e-8):
     else:
         determined_type = "Square (m = n)"
 
-    # Solution
+    # --- Solution ---
     if not in_range:
         solution_type = "No Solution"
         w = None
@@ -93,7 +94,7 @@ def analyze_case(case_num, G_name, G, f, f_name, tolerance=1e-8):
 
         w, *_ = np.linalg.lstsq(G, f, rcond=None)
 
-    # Print
+    # --- Sanity Checks ---
     print("\n" + "-"*50)
     print(f"\n{case_num}: G = {G_name}, f = {f_name}")
     print(f"G shape: {m} x {n}")
@@ -113,7 +114,7 @@ def analyze_case(case_num, G_name, G, f, f_name, tolerance=1e-8):
         print("\nOne solution w (using first square):")
         print(w)
 
-# Run Cases
+# --- Run Cases ---
 
 if __name__ == "__main__":
     for (case_name, G_name, G, f, f_name) in cases:
