@@ -12,16 +12,16 @@ def L(x):
 def g(x):
     return 2 * (A.T @ (A @ x - y))
 
-# Closed-form LS solution 
+# --- Closed-form LS solution ---
 x_opt = np.linalg.pinv(A) @ y
 L_opt = L(x_opt)
 
-# Lipschitz constant
+# --- Lipschitz constant ---
 sigma_max = np.linalg.svd(A, compute_uv=False)[0]
 C = 2 * sigma_max**2
 invC = 1 / C
 
-# GD with Exact Line Search
+# --- GD with Exact Line Search ---
 x = x0.copy()
 L_vals = []
 gammas = []
@@ -50,7 +50,7 @@ plt.legend()
 plt.tight_layout()
 plt.savefig("fig1_gd_els_L(x_n).png")
 
-# --- Task 3: Plot L(x_n) vs iteration index Figure 1 ---
+# --- Task 3: Plot L(x_n) vs iteration index Figure 2 ---
 plt.figure()
 plt.plot(iters, gammas, 'b-', label=r'$\gamma_n$')
 plt.axhline(invC, color='k', linestyle='--', label=r'$1/C$')
