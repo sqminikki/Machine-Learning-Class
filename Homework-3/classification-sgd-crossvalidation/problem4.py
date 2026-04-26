@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+np.random.seed(42)
 
 from problem1 import X, y
 from problem3 import run_cross_validation
@@ -54,7 +55,7 @@ plt.title("Fig. 15: Training and Testing Accuracy vs Epoch Index")
 plt.legend()
 plt.grid(True)
 plt.savefig("fig15_train_and_test_accuracy_vs_epochs.png", dpi=300)
-
+plt.close()
 
 # Fig. 16: Time vs Epoch
 
@@ -72,6 +73,7 @@ plt.title("Fig. 16: Training Time vs Epoch Index")
 plt.legend()
 plt.grid(True)
 plt.savefig("fig16_training_time_vs_epoch.png", dpi=300)
+plt.close()
 
 
 # Fig. 17: Combined Confusion Matrices
@@ -101,3 +103,4 @@ plt.suptitle("Fig. 17: Final Average Confusion Matrices for Each Mini-Batch Size
 
 plt.tight_layout(rect=[0, 0.05, 1, 0.95])
 plt.savefig("fig17_avg_confusion_matrices.png", dpi=300)
+plt.close()

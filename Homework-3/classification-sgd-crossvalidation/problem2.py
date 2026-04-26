@@ -1,4 +1,5 @@
 import numpy as np
+np.random.seed(42)
 
 def softmax(z):
     z = z - np.max(z, axis=1, keepdims=True)

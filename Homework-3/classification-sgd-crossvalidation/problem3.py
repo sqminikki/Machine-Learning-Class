@@ -1,5 +1,6 @@
 import numpy as np
 import time
+np.random.seed(42)
 
 from problem1 import X, y
 from problem2 import softmax, kfold_split, accuracy, confusion_matrix
