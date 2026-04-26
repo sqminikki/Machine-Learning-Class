@@ -54,7 +54,6 @@ plt.title("Fig. 15: Training and Testing Accuracy vs Epoch Index")
 plt.legend()
 plt.grid(True)
 plt.savefig("fig15_train_and_test_accuracy_vs_epochs.png", dpi=300)
-plt.show()
 
 
 # Fig. 16: Time vs Epoch
@@ -73,31 +72,32 @@ plt.title("Fig. 16: Training Time vs Epoch Index")
 plt.legend()
 plt.grid(True)
 plt.savefig("fig16_training_time_vs_epoch.png", dpi=300)
-plt.show()
 
 
-# Fig. 17: Confusion Matrices
+# Fig. 17: Combined Confusion Matrices
 
-for batch_size in batch_sizes:
+fig, axes = plt.subplots(1, 3, figsize=(15, 4))
+
+for idx, batch_size in enumerate(batch_sizes):
     cm = results[batch_size]["cm"]
+    ax = axes[idx]
 
-    plt.figure(figsize=(5, 4))
-    plt.imshow(cm)
+    im = ax.imshow(cm, cmap="Greens")
 
-    plt.title(f"Fig. 17: Final Average Confusion Matrix, Batch Size = {batch_size}")
-    plt.xlabel("Predicted Class")
-    plt.ylabel("True Class")
-    plt.colorbar(label="Number of Instances")
+    ax.set_title(f"Batch = {batch_size}")
+    ax.set_xlabel("Predicted")
+    ax.set_ylabel("True")
 
-    plt.xticks([0, 1, 2], ["Class 0", "Class 1", "Class 2"])
-    plt.yticks([0, 1, 2], ["Class 0", "Class 1", "Class 2"])
+    ax.set_xticks([0, 1, 2])
+    ax.set_yticks([0, 1, 2])
 
-    # Show numbers inside each cell
+    # Add numbers in each cell
     for i in range(cm.shape[0]):
         for j in range(cm.shape[1]):
-            plt.text(j, i, f"{cm[i, j]:.1f}",
-                     ha="center", va="center")
+            ax.text(j, i, f"{cm[i, j]:.1f}",
+                    ha="center", va="center")
 
-    plt.tight_layout()
-    plt.savefig(f"fig17_confusion_matrix_batch_{batch_size}.png", dpi=300)
-    plt.show()
+plt.suptitle("Fig. 17: Final Average Confusion Matrices for Each Mini-Batch Size")
+
+plt.tight_layout(rect=[0, 0.05, 1, 0.95])
+plt.savefig("fig17_avg_confusion_matrices.png", dpi=300)
