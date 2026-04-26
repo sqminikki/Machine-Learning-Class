@@ -5,7 +5,7 @@ np.random.seed(42)
 from problem1 import X, y
 from problem3 import run_cross_validation
 
-# Hyperparameters
+# Parameters
 lr = 0.1
 epochs = 500
 batch_sizes = [1, 36, 72]

@@ -50,7 +50,6 @@ def train_sgd(X_train, y_train, X_test, y_test, batch_size, epochs, lr):
         train_accs.append(accuracy(y_train, train_pred))
         test_accs.append(accuracy(y_test, test_pred))
 
-        # Record wall-clock time for this epoch
         times.append(time.time() - start_time)
 
     final_test_pred = np.argmax(X_test @ W, axis=1)
